@@ -5,14 +5,14 @@ import (
 )
 
 type NumberList struct {
-	Elements []int
+	Numbers []int
 
 	nodeCompiler Compiler
 }
 
-func NewNumberList(elements []int, nodeCompiler Compiler) Node {
+func NewNumberList(numbers []int, nodeCompiler Compiler) Node {
 	return &NumberList{
-		Elements:     elements,
+		Numbers:      numbers,
 		nodeCompiler: nodeCompiler,
 	}
 }

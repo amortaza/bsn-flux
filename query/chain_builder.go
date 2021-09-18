@@ -3,7 +3,7 @@ package query
 import (
 	"fmt"
 
-	"github.com/amortaza/bsn/flux/node"
+	"github.com/amortaza/bsn-flux/node"
 )
 
 type queryState int
@@ -96,7 +96,7 @@ func (builder *chainBuilder) Equals() error {
 		return fmt.Errorf("was not expecting Compare operator chainBuilder.Equals()")
 	}
 
-	builder.tailCompareOperator = node.NewEqual(builder.nodeCompiler)
+	builder.tailCompareOperator = node.NewEquals(builder.nodeCompiler)
 	builder.state = expectRHS
 
 	return nil
@@ -107,7 +107,7 @@ func (builder *chainBuilder) NotEquals() error {
 		return fmt.Errorf("was not expecting Compare operator chainBuilder.NotEquals()")
 	}
 
-	builder.tailCompareOperator = node.NewNotEqual(builder.nodeCompiler)
+	builder.tailCompareOperator = node.NewNotEquals(builder.nodeCompiler)
 	builder.state = expectRHS
 
 	return nil
@@ -129,7 +129,7 @@ func (builder *chainBuilder) LessOrEqual() error {
 		return fmt.Errorf("was not expecting Compare operator chainBuilder.LessThan()")
 	}
 
-	builder.tailCompareOperator = node.NewLessOrEqual(builder.nodeCompiler)
+	builder.tailCompareOperator = node.NewLessOrEquals(builder.nodeCompiler)
 	builder.state = expectRHS
 
 	return nil
@@ -151,7 +151,7 @@ func (builder *chainBuilder) GreaterOrEqual() error {
 		return fmt.Errorf("was not expecting Compare operator chainBuilder.GreaterOrEqual()")
 	}
 
-	builder.tailCompareOperator = node.NewGreaterOrEqual(builder.nodeCompiler)
+	builder.tailCompareOperator = node.NewGreaterOrEquals(builder.nodeCompiler)
 	builder.state = expectRHS
 
 	return nil

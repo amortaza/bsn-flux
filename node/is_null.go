@@ -6,7 +6,6 @@ import (
 
 type IsNull struct {
 	ColumnNode *Column
-
 	Not bool
 
 	nodeCompiler Compiler

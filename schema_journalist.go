@@ -1,6 +1,6 @@
 package flux
 
-import "github.com/amortaza/bsn/flux/relation"
+import "github.com/amortaza/bsn-flux/relation"
 
 type SchemaJournalist interface {
 	CreateRelation(name string) error

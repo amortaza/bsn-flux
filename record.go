@@ -3,8 +3,8 @@ package flux
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/amortaza/bsn/flux/normalization"
-	"github.com/amortaza/bsn/flux/query"
+	"github.com/amortaza/bsn-flux/normalization_config"
+	"github.com/amortaza/bsn-flux/query"
 )
 
 type Record struct {
@@ -53,7 +53,7 @@ func (rec *Record) Insert() (string, error) {
 }
 
 func (rec *Record) Update() error {
-	pk, err := rec.Get(normalization.PrimaryKeyFieldname)
+	pk, err := rec.Get(normalization_config.PrimaryKey_FieldName)
 	if err != nil {
 		return err
 	}
@@ -62,7 +62,7 @@ func (rec *Record) Update() error {
 }
 
 func (rec *Record) Delete() error {
-	pk, err := rec.Get(normalization.PrimaryKeyFieldname)
+	pk, err := rec.Get(normalization_config.PrimaryKey_FieldName)
 	if err != nil {
 		return err
 	}
@@ -108,7 +108,7 @@ func (rec *Record) Get(field string) (string, error) {
 }
 
 func (rec *Record) AddPrimaryKey(id string) error {
-	return rec.filterQuery.Add(normalization.PrimaryKeyFieldname, query.Equals, id)
+	return rec.filterQuery.Add(normalization_config.PrimaryKey_FieldName, query.Equals, id)
 }
 
 func (rec *Record) Add(field string, op query.OpType, rhs string) error {

@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/amortaza/bsn/flux/relation"
-	"github.com/amortaza/bsn/logger"
+	"github.com/amortaza/bsn-flux/logger"
+	"github.com/amortaza/bsn-flux/relation"
 )
 
 type RecordMap struct {
@@ -42,7 +42,7 @@ func (recmap *RecordMap) MarshalJSON() ([]byte, error) {
 
 	buffer.WriteString("}")
 
-	logger.Log(string(buffer.Bytes()), logger.JSONencoded)
+	logger.Log(string(buffer.Bytes()), logger.JsonEncoding)
 
 	return buffer.Bytes(), nil
 }
@@ -53,16 +53,16 @@ func NewRecordMap() *RecordMap {
 	}
 }
 
-func (m *RecordMap) Put(key string, value interface{}) {
-	m.Data[key] = value
+func (recmap *RecordMap) Put(key string, value interface{}) {
+	recmap.Data[key] = value
 }
 
-func (m *RecordMap) Get(key string) (string, error) {
-	if !m.Has(key) {
+func (recmap *RecordMap) Get(key string) (string, error) {
+	if !recmap.Has(key) {
 		return "", fmt.Errorf("key not '%s' not found in map", key)
 	}
 
-	asByteArray, ok := m.Data[key].([]byte)
+	asByteArray, ok := recmap.Data[key].([]byte)
 	if !ok {
 		return "", fmt.Errorf("value for key'%s' not a string", key)
 	}
@@ -70,12 +70,12 @@ func (m *RecordMap) Get(key string) (string, error) {
 	return string(asByteArray), nil
 }
 
-func (m *RecordMap) GetNumber(key string) (float32, error) {
-	if !m.Has(key) {
+func (recmap *RecordMap) GetNumber(key string) (float32, error) {
+	if !recmap.Has(key) {
 		return 0, fmt.Errorf("key not '%s' not found in map", key)
 	}
 
-	value, ok := m.Data[key].(float32)
+	value, ok := recmap.Data[key].(float32)
 	if !ok {
 		return 0, fmt.Errorf("value for key'%s' not a number", key)
 	}
@@ -83,12 +83,12 @@ func (m *RecordMap) GetNumber(key string) (float32, error) {
 	return value, nil
 }
 
-func (m *RecordMap) GetBool(key string) (bool, error) {
-	if !m.Has(key) {
+func (recmap *RecordMap) GetBool(key string) (bool, error) {
+	if !recmap.Has(key) {
 		return false, fmt.Errorf("key not '%s' not found in map", key)
 	}
 
-	value, ok := m.Data[key].(bool)
+	value, ok := recmap.Data[key].(bool)
 	if !ok {
 		return false, fmt.Errorf("value for key'%s' not a bool", key)
 	}
@@ -96,12 +96,12 @@ func (m *RecordMap) GetBool(key string) (bool, error) {
 	return value, nil
 }
 
-func (m *RecordMap) Type(key string) (relation.FieldType, error) {
-	if !m.Has(key) {
+func (recmap *RecordMap) Type(key string) (relation.FieldType, error) {
+	if !recmap.Has(key) {
 		return "", fmt.Errorf("key not '%s' not found in map", key)
 	}
 
-	value := m.Data[key]
+	value := recmap.Data[key]
 
 	if _, ok := value.(string); ok {
 		return relation.String, nil
@@ -118,16 +118,16 @@ func (m *RecordMap) Type(key string) (relation.FieldType, error) {
 	return "", fmt.Errorf("cannot determine type of value for key '%s', see '%v'", key, value)
 }
 
-func (m *RecordMap) Has(key string) bool {
-	_, ok := m.Data[key]
+func (recmap *RecordMap) Has(key string) bool {
+	_, ok := recmap.Data[key]
 
 	return ok
 }
 
-func (m *RecordMap) Combine(other *RecordMap) *RecordMap {
+func (recmap *RecordMap) Combine(other *RecordMap) *RecordMap {
 	result := NewRecordMap()
 
-	for k, v := range m.Data {
+	for k, v := range recmap.Data {
 		result.Put(k, v)
 	}
 

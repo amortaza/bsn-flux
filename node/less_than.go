@@ -6,22 +6,22 @@ import (
 
 type LessThan struct {
 	Left    Node
-	Right   Node
-	EqualTo bool
+	Right    Node
+	OrEquals bool
 
 	nodeCompiler Compiler
 }
 
 func NewLessThan(nodeCompiler Compiler) *LessThan {
 	return &LessThan{
-		EqualTo:      false,
+		OrEquals:     false,
 		nodeCompiler: nodeCompiler,
 	}
 }
 
-func NewLessOrEqual(nodeCompiler Compiler) *LessThan {
+func NewLessOrEquals(nodeCompiler Compiler) *LessThan {
 	return &LessThan{
-		EqualTo:      true,
+		OrEquals:     true,
 		nodeCompiler: nodeCompiler,
 	}
 }

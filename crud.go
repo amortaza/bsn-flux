@@ -1,6 +1,6 @@
 package flux
 
-import "github.com/amortaza/bsn/flux/node"
+import "github.com/amortaza/bsn-flux/node"
 
 type CRUD interface {
 	Compiler() node.Compiler

@@ -6,22 +6,22 @@ import (
 
 type GreaterThan struct {
 	Left    Node
-	Right   Node
-	OrEqual bool
+	Right    Node
+	OrEquals bool
 
 	nodeCompiler Compiler
 }
 
 func NewGreaterThan(nodeCompiler Compiler) *GreaterThan {
 	return &GreaterThan{
-		OrEqual:      false,
+		OrEquals:     false,
 		nodeCompiler: nodeCompiler,
 	}
 }
 
-func NewGreaterOrEqual(nodeCompiler Compiler) *GreaterThan {
+func NewGreaterOrEquals(nodeCompiler Compiler) *GreaterThan {
 	return &GreaterThan{
-		OrEqual:      true,
+		OrEquals:     true,
 		nodeCompiler: nodeCompiler,
 	}
 }

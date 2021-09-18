@@ -5,14 +5,14 @@ import (
 )
 
 type StringList struct {
-	Elements []string
+	Strings []string
 
 	nodeCompiler Compiler
 }
 
-func NewStringList(elements []string, nodeCompiler Compiler) Node {
+func NewStringList(strings []string, nodeCompiler Compiler) Node {
 	return &StringList{
-		Elements:     elements,
+		Strings:      strings,
 		nodeCompiler: nodeCompiler,
 	}
 }

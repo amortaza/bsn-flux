@@ -5,7 +5,7 @@ type Compiler interface {
 	ColumnCompile(*Column) (string, error)
 	ContainsCompile(*Contains) (string, error)
 	EndsWithCompile(*EndsWith) (string, error)
-	EqualCompile(*Equal) (string, error)
+	EqualCompile(*Equals) (string, error)
 	GreaterThanCompile(*GreaterThan) (string, error)
 	InCompile(*In) (string, error)
 	IsNullCompile(*IsNull) (string, error)

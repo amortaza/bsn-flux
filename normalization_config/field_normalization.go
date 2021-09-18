@@ -1,7 +1,8 @@
-package normalization
+package normalization_config
 
 const prefix = "x_"
-const PrimaryKeyFieldname = prefix + "pk"
+
+const PrimaryKey_FieldName = prefix + "pk"
 
 func NormalizeRelationName(name string) string {
 	return prefix + name
