@@ -3,7 +3,7 @@ package query
 import (
 	"fmt"
 
-	"github.com/amortaza/bsn/flux/node"
+	"github.com/amortaza/bsn-flux/node"
 )
 
 type FilterQuery struct {

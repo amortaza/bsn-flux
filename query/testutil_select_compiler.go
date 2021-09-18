@@ -1,6 +1,6 @@
 package query
 
-import "github.com/amortaza/bsn/flux/node"
+import "github.com/amortaza/bsn-flux/node"
 
 type testUtil_SelectCompiler struct {
 	From  string
