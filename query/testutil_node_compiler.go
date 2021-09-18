@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/amortaza/bsn/flux/node"
+	"github.com/amortaza/bsn-flux/node"
 )
 
 type testUtil_NodeCompiler struct {
@@ -102,7 +102,7 @@ func (compiler *testUtil_NodeCompiler) EndsWithCompile(endsWith *node.EndsWith) 
 	return leftSQL + not + " LIKE '%" + rightSQL + "'", nil
 }
 
-func (compiler *testUtil_NodeCompiler) EqualCompile(equal *node.Equal) (string, error) {
+func (compiler *testUtil_NodeCompiler) EqualCompile(equal *node.Equals) (string, error) {
 
 	if equal.Left == nil || equal.Right == nil {
 		return "", fmt.Errorf("both left and right sides of an EQUAL expression must have values")
@@ -143,7 +143,7 @@ func (compiler *testUtil_NodeCompiler) GreaterThanCompile(greaterThan *node.Grea
 
 	op := " > "
 
-	if greaterThan.OrEqual {
+	if greaterThan.OrEquals {
 		op = " >= "
 	}
 
@@ -205,7 +205,7 @@ func (compiler *testUtil_NodeCompiler) LessThanCompile(lessThan *node.LessThan) 
 
 	op := " < "
 
-	if lessThan.EqualTo {
+	if lessThan.OrEquals {
 		op = " <= "
 	}
 
@@ -240,9 +240,9 @@ func (compiler *testUtil_NodeCompiler) NumberListCompile(numberList *node.Number
 
 	sql := "[ "
 
-	last := len(numberList.Elements) - 1
+	last := len(numberList.Numbers) - 1
 
-	for i, e := range numberList.Elements {
+	for i, e := range numberList.Numbers {
 
 		s := strconv.Itoa(e)
 
@@ -313,9 +313,9 @@ func (compiler *testUtil_NodeCompiler) StringListCompile(stringList *node.String
 
 	sql := "[ "
 
-	last := len(stringList.Elements) - 1
+	last := len(stringList.Strings) - 1
 
-	for i, s := range stringList.Elements {
+	for i, s := range stringList.Strings {
 
 		if i == last {
 			sql += fmt.Sprintf("'%v'", s)
